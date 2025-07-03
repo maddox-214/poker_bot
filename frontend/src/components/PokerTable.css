@@ -1,0 +1,80 @@
+.poker-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #065f2f;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.table-background {
+  background-color: #0a7c3c;
+  border-radius: 9999px;
+  padding: 2rem;
+  box-shadow: inset 0 0 5px #003d1c;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 300px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-on-table {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.hole-cards {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.card {
+  width: 60px;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card.selected {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 6px;
+  background-color: #054a29;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.reset {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.submit {
+  background-color: #2979ff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}

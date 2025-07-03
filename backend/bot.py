@@ -4,27 +4,29 @@ from simulator import MonteCarloSimulator
 from evaluator import rank_to_string
 from utils import parse_pretty_cards
 
+
 class PokerBot:
     def __init__(self, n_players=2, n_simulations=10000):
         self.sim = MonteCarloSimulator(n_players=n_players, n_simulations=n_simulations)
+        self.last_win_prob = None
 
     def get_action(self, hole_cards_str, community_cards_str=None, pot_size=1, call_amount=1):
         """
         hole_cards_str: ['As', 'Kd']
         community_cards_str: e.g. ['2h','Jc','Ts'] or []
-        Returns: ('fold'/'call'/'raise', raise_size or None)
+        Returns: (action, raise_amt, win_prob)
         """
         hole_cards = parse_pretty_cards(hole_cards_str)
         known_comm = parse_pretty_cards(community_cards_str) if community_cards_str else []
 
-        # Estimate win probability / EV for calling
-        ev_call = self.sim.simulate_EV(hole_cards, known_comm, pot_size, call_amount)
+        ev_call, win_prob = self.sim.simulate_EV(hole_cards, known_comm, pot_size, call_amount)
+        win_prob = max(0.0, min(1.0, win_prob))  # clamp to [0, 1] just in case
 
-        # For simplicity: if EV > 0 → call, else fold. (no raises yet)
         if ev_call > 0:
-            return "call", None
+            return "call", None, win_prob
         else:
-            return "fold", None
+            return "fold", None, win_prob
+
 
 if __name__ == "__main__":
     # example usage:
@@ -39,8 +41,9 @@ if __name__ == "__main__":
     hole1, hole2 = sys.argv[1], sys.argv[2]
     community = sys.argv[3:] if len(sys.argv) > 3 else []
 
-    action, raise_amt = bot.get_action([hole1, hole2], community, pot_size=10, call_amount=2)
+    action, raise_amt, win_prob = bot.get_action([hole1, hole2], community, pot_size=10, call_amount=2)
     print(f"Hole: {hole1} {hole2}")
     if community:
         print("Board:", " ".join(community))
     print("Decision:", action, raise_amt if raise_amt else "")
+    print(f"Win Probability: {win_prob:.2%}")

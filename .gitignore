@@ -1,0 +1,83 @@
+# =========================
+# PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.env
+*.venv
+.venv/
+.env/
+env/
+build/
+dist/
+pip-wheel-metadata/
+site/
+.DS_Store
+*.log
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# mypy
+.mypy_cache/
+
+# coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# local dev config
+*.sqlite3
+*.db
+instance/
+*.bak
+*.swp
+
+# =========================
+# NODE / REACT
+# =========================
+# dependencies
+frontend/node_modules/
+
+# build output
+frontend/dist/
+frontend/build/
+
+# testing
+frontend/coverage/
+frontend/.coverage
+frontend/jest-html-reporters-*.html
+
+# logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# local env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# IDEs
+frontend/.DS_Store
+frontend/.vscode/
+frontend/.idea/
+
+# misc
+frontend/.parcel-cache/
+frontend/.turbo/
+frontend/.next/
+frontend/.eslintcache
